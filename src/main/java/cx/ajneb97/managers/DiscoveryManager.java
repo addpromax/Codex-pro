@@ -24,6 +24,7 @@ public class DiscoveryManager {
     private final Map<DiscoveredOn.DiscoveredOnType,List<Discovery>> discoveryCache = new ConcurrentHashMap<>();
     public static final String CRAFT_ENGINE_ID_KEY = "craftengine:id";
     private final boolean itemsAdderPresent = Bukkit.getPluginManager().getPlugin("ItemsAdder") != null;
+    private final boolean mmoItemsPresent = Bukkit.getPluginManager().getPlugin("MMOItems") != null;
 
     public DiscoveryManager(Codex plugin){
         this.plugin = plugin;
@@ -208,6 +209,18 @@ public class DiscoveryManager {
                 }
             }
 
+            // Check MMOItems
+            if(discoveredOn.getMmoItemsId()!=null || discoveredOn.getMmoItemsType()!=null){
+                String id = getMmoItemsId(item);
+                String type = getMmoItemsType(item);
+                if(discoveredOn.getMmoItemsId()!=null && (id==null || !id.equalsIgnoreCase(discoveredOn.getMmoItemsId()))){
+                    continue;
+                }
+                if(discoveredOn.getMmoItemsType()!=null && (type==null || !type.equalsIgnoreCase(discoveredOn.getMmoItemsType()))){
+                    continue;
+                }
+            }
+
             onDiscover(player,discovery.getCategoryName(),discovery.getId());
             return;
         }
@@ -287,5 +300,33 @@ public class DiscoveryManager {
         }catch(Exception e){
             return null;
         }
+    }
+
+    private String getMmoItemsId(ItemStack item){
+        if(!mmoItemsPresent){return null;}
+        // Try PDC keys first
+        ItemMeta meta = item.getItemMeta();
+        if(meta!=null){
+            PersistentDataContainer pdc = meta.getPersistentDataContainer();
+            NamespacedKey idKey = new NamespacedKey("mmoitems","item_id");
+            if(pdc.has(idKey,PersistentDataType.STRING)){
+                return pdc.get(idKey,PersistentDataType.STRING);
+            }
+        }
+        // Fallback NBT
+        return plugin.getNmsManager().getTagStringItem(item,"MMOITEMS_ITEM_ID");
+    }
+
+    private String getMmoItemsType(ItemStack item){
+        if(!mmoItemsPresent){return null;}
+        ItemMeta meta = item.getItemMeta();
+        if(meta!=null){
+            PersistentDataContainer pdc = meta.getPersistentDataContainer();
+            NamespacedKey typeKey = new NamespacedKey("mmoitems","item_type");
+            if(pdc.has(typeKey,PersistentDataType.STRING)){
+                return pdc.get(typeKey,PersistentDataType.STRING);
+            }
+        }
+        return plugin.getNmsManager().getTagStringItem(item,"MMOITEMS_ITEM_TYPE");
     }
 }

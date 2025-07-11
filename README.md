@@ -24,6 +24,14 @@ Codex 是一款 RPG 图鉴插件，支持通过击杀生物、进入区域等多
      [Codex] CraftEngine Hook: 成功
      [Codex] ItemsAdder Hook: 成功
      ```
+5. **MMOItems 兼容**
+   - 自动检测服务器是否安装 [MMOItems](https://spigotmc.org/resources/mmoitems.39267/)。
+   - 支持 YAML 字段 `mmoitems_type` 与 `mmoitems_id`，可单独或组合使用。
+   - 识别顺序：先读取物品 `PersistentDataContainer` 的 `mmoitems:item_type` / `mmoitems:item_id`，若不存在则回退至 NBT 键 `MMOITEMS_ITEM_TYPE/ID`。
+   - 控制台同样在启动时输出挂钩状态：
+     ```
+     [Codex] MMOItems Hook: 成功
+     ```
 
 ## 3. YAML 配置示例
 ```yml
@@ -65,6 +73,15 @@ discoveries:
       type: ITEM_OBTAIN
       value:
         itemsadder_item_id: myitems:magic_wand
+
+  legendary_sword:
+    name: "&6传奇之刃"
+    description: ["&7拾取 MMOItems 传奇之刃"]
+    discovered_on:
+      type: ITEM_OBTAIN
+      value:
+        mmoitems_type: SWORD
+        mmoitems_id: LEGENDARY_SWORD
 ```
 
 ## 4. 配置字段说明
@@ -76,6 +93,8 @@ discoveries:
 | `components` | String | `PersistentDataContainer` 中的组件键列表，多个用 `;` 分隔，全部满足触发 |
 | `craft_engine_id` | String | Craft-Engine 自定义物品 ID |
 | `itemsadder_item_id` | String | ItemsAdder 自定义物品 ID |
+| `mmoitems_type` | String | MMOItems 物品类型 |
+| `mmoitems_id` | String | MMOItems 物品 ID |
 | `command` | String | 指令名（不含 `/`），多个用 `;` 分隔 |
 
 如字段为空或不存在即忽略该判定。

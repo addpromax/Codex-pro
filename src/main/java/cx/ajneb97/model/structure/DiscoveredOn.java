@@ -12,6 +12,8 @@ public class DiscoveredOn {
     private String components;
     private String craftEngineId;
     private String itemsAdderId;
+    private String mmoItemsType;
+    private String mmoItemsId;
 
     public DiscoveredOn(DiscoveredOnType type) {
         this.type = type;
@@ -95,6 +97,22 @@ public class DiscoveredOn {
 
     public void setItemsAdderId(String itemsAdderId) {
         this.itemsAdderId = itemsAdderId;
+    }
+
+    public String getMmoItemsType() {
+        return mmoItemsType;
+    }
+
+    public void setMmoItemsType(String mmoItemsType) {
+        this.mmoItemsType = mmoItemsType;
+    }
+
+    public String getMmoItemsId() {
+        return mmoItemsId;
+    }
+
+    public void setMmoItemsId(String mmoItemsId) {
+        this.mmoItemsId = mmoItemsId;
     }
 
     public enum DiscoveredOnType{
