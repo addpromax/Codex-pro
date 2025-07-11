@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.NamespacedKey;
+import org.bukkit.Bukkit;
 import java.util.concurrent.ConcurrentHashMap;
 
 import java.util.*;
@@ -22,6 +23,7 @@ public class DiscoveryManager {
     private Codex plugin;
     private final Map<DiscoveredOn.DiscoveredOnType,List<Discovery>> discoveryCache = new ConcurrentHashMap<>();
     public static final String CRAFT_ENGINE_ID_KEY = "craftengine:id";
+    private final boolean itemsAdderPresent = Bukkit.getPluginManager().getPlugin("ItemsAdder") != null;
 
     public DiscoveryManager(Codex plugin){
         this.plugin = plugin;
@@ -197,6 +199,15 @@ public class DiscoveryManager {
                 }
             }
 
+            // Check ItemsAdder ID
+            String iaId = discoveredOn.getItemsAdderId();
+            if(iaId != null){
+                String itemIaId = getItemsAdderId(item);
+                if(itemIaId == null || !itemIaId.equalsIgnoreCase(iaId)){
+                    continue;
+                }
+            }
+
             onDiscover(player,discovery.getCategoryName(),discovery.getId());
             return;
         }
@@ -258,5 +269,23 @@ public class DiscoveryManager {
         }
 
         return true;
+    }
+
+    private String getItemsAdderId(ItemStack item){
+        if(!itemsAdderPresent){
+            return null;
+        }
+        try{
+            Class<?> customStackClz = Class.forName("dev.lone.itemsadder.api.CustomStack");
+            java.lang.reflect.Method byItem = customStackClz.getMethod("byItemStack", ItemStack.class);
+            Object cs = byItem.invoke(null,item);
+            if(cs == null){
+                return null;
+            }
+            java.lang.reflect.Method getName = customStackClz.getMethod("getName");
+            return (String)getName.invoke(cs);
+        }catch(Exception e){
+            return null;
+        }
     }
 }

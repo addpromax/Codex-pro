@@ -11,6 +11,7 @@ public class DiscoveredOn {
     private Integer customModelData;
     private String components;
     private String craftEngineId;
+    private String itemsAdderId;
 
     public DiscoveredOn(DiscoveredOnType type) {
         this.type = type;
@@ -86,6 +87,14 @@ public class DiscoveredOn {
 
     public void setCraftEngineId(String craftEngineId) {
         this.craftEngineId = craftEngineId;
+    }
+
+    public String getItemsAdderId() {
+        return itemsAdderId;
+    }
+
+    public void setItemsAdderId(String itemsAdderId) {
+        this.itemsAdderId = itemsAdderId;
     }
 
     public enum DiscoveredOnType{

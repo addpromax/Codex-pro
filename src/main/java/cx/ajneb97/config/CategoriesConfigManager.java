@@ -69,6 +69,7 @@ public class CategoriesConfigManager extends DataFolderConfigManager {
                             }
                             discoveredOn.setComponents(config.getString(pathValue+".components"));
                             discoveredOn.setCraftEngineId(config.getString(pathValue+".craft_engine_id"));
+                            discoveredOn.setItemsAdderId(config.getString(pathValue+".itemsadder_item_id"));
                         }
 
                         CommonItem customDiscoveryItemUnlocked = null;

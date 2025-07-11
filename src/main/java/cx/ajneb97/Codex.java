@@ -77,6 +77,12 @@ public class Codex extends JavaPlugin {
         this.verifyManager = new VerifyManager(this);
         this.verifyManager.verify();
 
+        // Hooks info
+        boolean craftEngineHook = Bukkit.getPluginManager().getPlugin("CraftEngine") != null;
+        boolean itemsAdderHook = Bukkit.getPluginManager().getPlugin("ItemsAdder") != null;
+        Bukkit.getConsoleSender().sendMessage(prefix + MessagesManager.getColoredMessage("&7CraftEngine Hook: " + (craftEngineHook?"&a成功":"&c未找到")));
+        Bukkit.getConsoleSender().sendMessage(prefix + MessagesManager.getColoredMessage("&7ItemsAdder Hook: " + (itemsAdderHook?"&a成功":"&c未找到")));
+
         if(configsManager.getMainConfigManager().isMySQL()){
             mySQLConnection = new MySQLConnection(this);
             mySQLConnection.setupMySql();

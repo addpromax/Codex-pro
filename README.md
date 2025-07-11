@@ -16,6 +16,14 @@ Codex 是一款 RPG 图鉴插件，支持通过击杀生物、进入区域等多
    - `craft_engine_id` 兼容 Craft-Engine 自定义物品的唯一 ID。
 3. **Craft-Engine 兼容**
    - 读取 NBT 键 `craftengine:id`，可与 Craft-Engine 定义的物品ID对应，实现跨插件识别。
+4. **ItemsAdder 兼容**
+   - 自动检测服务器是否安装 [ItemsAdder](https://spigotmc.org/resources/81208)。
+   - 通过 `CustomStack.byItemStack` 获取物品 ID，比对 `itemsadder_item_id` 字段，实现与 ItemsAdder 自定义物品的图鉴发现。
+   - 插件启动时控制台会输出挂钩状态：
+     ```
+     [Codex] CraftEngine Hook: 成功
+     [Codex] ItemsAdder Hook: 成功
+     ```
 
 ## 3. YAML 配置示例
 ```yml
@@ -49,6 +57,14 @@ discoveries:
       type: ITEM_OBTAIN
       value:
         craft_engine_id: myplugin:mythic_blade
+
+  ia_magic_wand:
+    name: "&d魔法杖"
+    description: ["&7使用 ItemsAdder 魔法杖"]
+    discovered_on:
+      type: ITEM_OBTAIN
+      value:
+        itemsadder_item_id: myitems:magic_wand
 ```
 
 ## 4. 配置字段说明
@@ -59,6 +75,7 @@ discoveries:
 | `custom_model_data` | Integer | 自定义模型数值，需完整匹配 |
 | `components` | String | `PersistentDataContainer` 中的组件键列表，多个用 `;` 分隔，全部满足触发 |
 | `craft_engine_id` | String | Craft-Engine 自定义物品 ID |
+| `itemsadder_item_id` | String | ItemsAdder 自定义物品 ID |
 | `command` | String | 指令名（不含 `/`），多个用 `;` 分隔 |
 
 如字段为空或不存在即忽略该判定。
