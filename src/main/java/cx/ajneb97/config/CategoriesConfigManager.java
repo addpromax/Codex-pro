@@ -61,6 +61,14 @@ public class CategoriesConfigManager extends DataFolderConfigManager {
                             discoveredOn.setMobName(config.getString(pathValue+".mob_name"));
                             discoveredOn.setMobType(config.getString(pathValue+".mob_type"));
                             discoveredOn.setRegionName(config.getString(pathValue+".region_name"));
+                            // New trigger types
+                            discoveredOn.setItemType(config.getString(pathValue+".item_type"));
+                            discoveredOn.setCommand(config.getString(pathValue+".command"));
+                            if(config.contains(pathValue+".custom_model_data")){
+                                discoveredOn.setCustomModelData(config.getInt(pathValue+".custom_model_data"));
+                            }
+                            discoveredOn.setComponents(config.getString(pathValue+".components"));
+                            discoveredOn.setCraftEngineId(config.getString(pathValue+".craft_engine_id"));
                         }
 
                         CommonItem customDiscoveryItemUnlocked = null;

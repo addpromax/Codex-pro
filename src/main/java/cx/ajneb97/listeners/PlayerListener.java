@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
+import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class PlayerListener implements Listener {
@@ -37,5 +39,21 @@ public class PlayerListener implements Listener {
             String customName = e.getCustomName() != null ? ChatColor.stripColor(e.getCustomName()) : null;
             plugin.getDiscoveryManager().onMobKill(e.getKiller(),e.getType().name(),customName);
         }
+    }
+
+    @EventHandler
+    public void onItemPickup(EntityPickupItemEvent event){
+        if(!(event.getEntity() instanceof Player)){
+            return;
+        }
+        Player player = (Player) event.getEntity();
+        plugin.getDiscoveryManager().onItemObtain(player,event.getItem().getItemStack());
+    }
+
+    @EventHandler
+    public void onFirstCommand(PlayerCommandPreprocessEvent event){
+        Player player = event.getPlayer();
+        String command = event.getMessage().startsWith("/") ? event.getMessage().substring(1).split(" ")[0] : event.getMessage().split(" ")[0];
+        plugin.getDiscoveryManager().onCommandRun(player,command.toLowerCase());
     }
 }

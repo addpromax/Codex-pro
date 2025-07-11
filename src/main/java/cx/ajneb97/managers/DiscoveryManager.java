@@ -9,27 +9,44 @@ import cx.ajneb97.model.structure.DiscoveredOn;
 import cx.ajneb97.model.structure.Discovery;
 import cx.ajneb97.utils.ActionUtils;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
+import org.bukkit.NamespacedKey;
+import java.util.concurrent.ConcurrentHashMap;
 
 import java.util.*;
 
 public class DiscoveryManager {
     private Codex plugin;
+    private final Map<DiscoveredOn.DiscoveredOnType,List<Discovery>> discoveryCache = new ConcurrentHashMap<>();
+    public static final String CRAFT_ENGINE_ID_KEY = "craftengine:id";
 
     public DiscoveryManager(Codex plugin){
         this.plugin = plugin;
+        rebuildCache();
     }
 
-    private ArrayList<Discovery> getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType type){
-        ArrayList<Discovery> possibleDiscoveries = new ArrayList<>();
+    /**
+     * 重建触发器 -> discoveries 缓存，提升查询效率
+     */
+    public void rebuildCache(){
+        discoveryCache.clear();
         ArrayList<Category> categories = plugin.getCategoryManager().getCategories();
         for(Category category : categories){
             for(Discovery discovery : category.getDiscoveries()){
-                if(discovery.getDiscoveredOn() != null && discovery.getDiscoveredOn().getType().equals(type)){
-                    possibleDiscoveries.add(discovery);
+                DiscoveredOn discoveredOn = discovery.getDiscoveredOn();
+                if(discoveredOn == null){
+                    continue;
                 }
+                discoveryCache.computeIfAbsent(discoveredOn.getType(),k->new ArrayList<>()).add(discovery);
             }
         }
-        return possibleDiscoveries;
+    }
+
+    private List<Discovery> getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType type){
+        return discoveryCache.getOrDefault(type, Collections.emptyList());
     }
 
     private ArrayList<Discovery> getNotFoundDiscoveries(ArrayList<PlayerDataCategory> foundDiscoveries){
@@ -57,7 +74,7 @@ public class DiscoveryManager {
     }
 
     public void onMobKill(Player player, String mobType, String mobName){
-        ArrayList<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.MOB_KILL);
+        List<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.MOB_KILL);
         for(Discovery discovery : discoveries){
             DiscoveredOn discoveredOn = discovery.getDiscoveredOn();
             String discoveryMobName = discoveredOn.getMobName();
@@ -76,16 +93,16 @@ public class DiscoveryManager {
     }
 
     public void onMythicMobKill(Player player, String mythicMobType){
-        ArrayList<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.MYTHIC_MOB_KILL);
+        List<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.MYTHIC_MOB_KILL);
         onPluginMobKill(player,mythicMobType,discoveries);
     }
 
     public void onEliteMobKill(Player player, String eliteMobType){
-        ArrayList<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.ELITE_MOB_KILL);
+        List<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.ELITE_MOB_KILL);
         onPluginMobKill(player,eliteMobType.replace(".yml",""),discoveries);
     }
 
-    private void onPluginMobKill(Player player, String mobType, ArrayList<Discovery> discoveries){
+    private void onPluginMobKill(Player player, String mobType, List<Discovery> discoveries){
         for(Discovery discovery : discoveries){
             DiscoveredOn discoveredOn = discovery.getDiscoveredOn();
             String discoveryMobType = discoveredOn.getMobType();
@@ -103,12 +120,99 @@ public class DiscoveryManager {
     }
 
     public void onWorldGuardRegionEnter(Player player, String regionName){
-        ArrayList<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.WORLDGUARD_REGION);
+        List<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.WORLDGUARD_REGION);
         for(Discovery discovery : discoveries){
             DiscoveredOn discoveredOn = discovery.getDiscoveredOn();
             String discoveryRegionName = discoveredOn.getRegionName();
             if(discoveryRegionName != null && !discoveryRegionName.equals(regionName)){
                 continue;
+            }
+
+            onDiscover(player,discovery.getCategoryName(),discovery.getId());
+
+            return;
+        }
+    }
+
+    // New trigger: item obtain
+    public void onItemObtain(Player player, ItemStack item){
+        if(item == null){
+            return;
+        }
+        String itemType = item.getType().name();
+        ItemMeta meta = item.getItemMeta();
+
+        List<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.ITEM_OBTAIN);
+        for(Discovery discovery : discoveries){
+            DiscoveredOn discoveredOn = discovery.getDiscoveredOn();
+
+            // Check item type
+            String discoveryItemType = discoveredOn.getItemType();
+            if(discoveryItemType != null){
+                String[] sep = discoveryItemType.split(";");
+                if(Arrays.stream(sep).noneMatch(itemType::equals)){
+                    continue;
+                }
+            }
+
+            // Check custom model data
+            Integer cmd = discoveredOn.getCustomModelData();
+            if(cmd != null){
+                if(meta == null || !meta.hasCustomModelData() || meta.getCustomModelData() != cmd){
+                    continue;
+                }
+            }
+
+            // Check components / persistent data
+            String components = discoveredOn.getComponents();
+            if(components != null && !components.isEmpty()){
+                PersistentDataContainer pdc = meta.getPersistentDataContainer();
+                boolean allMatch = true;
+                String[] keys = components.split(";");
+                for(String keyStr : keys){
+                    String trimmed = keyStr.trim();
+                    if(trimmed.isEmpty()) continue;
+                    NamespacedKey key = NamespacedKey.fromString(trimmed);
+                    if(key == null || !pdc.has(key, PersistentDataType.STRING)){
+                        allMatch = false;
+                        break;
+                    }
+                }
+                if(!allMatch){
+                    continue;
+                }
+            }
+
+            // Check CraftEngine ID
+            String craftId = discoveredOn.getCraftEngineId();
+            if(craftId != null){
+                String itemCraftId;
+                if(meta != null && meta.getPersistentDataContainer().has(new NamespacedKey(plugin, CRAFT_ENGINE_ID_KEY), PersistentDataType.STRING)){
+                    itemCraftId = meta.getPersistentDataContainer().get(new NamespacedKey(plugin, CRAFT_ENGINE_ID_KEY), PersistentDataType.STRING);
+                }else{
+                    itemCraftId = plugin.getNmsManager().getTagStringItem(item, CRAFT_ENGINE_ID_KEY);
+                }
+                if(itemCraftId == null || !itemCraftId.equals(craftId)){
+                    continue;
+                }
+            }
+
+            onDiscover(player,discovery.getCategoryName(),discovery.getId());
+            return;
+        }
+    }
+
+    // New trigger: command run
+    public void onCommandRun(Player player, String command){
+        List<Discovery> discoveries = getPossibleDiscoveries(DiscoveredOn.DiscoveredOnType.COMMAND_RUN);
+        for(Discovery discovery : discoveries){
+            DiscoveredOn discoveredOn = discovery.getDiscoveredOn();
+            String discoveryCommand = discoveredOn.getCommand();
+            if(discoveryCommand != null){
+                String[] sep = discoveryCommand.split(";");
+                if(Arrays.stream(sep).noneMatch(c -> c.equalsIgnoreCase(command))){
+                    continue;
+                }
             }
 
             onDiscover(player,discovery.getCategoryName(),discovery.getId());

@@ -20,6 +20,8 @@ public class CategoryManager {
 
 	public void setCategories(ArrayList<Category> categories) {
 		this.categories = categories;
+		// 刷新 discovery 缓存索引
+		plugin.getDiscoveryManager().rebuildCache();
 	}
 
 	public Category getCategory(String name){

@@ -6,6 +6,11 @@ public class DiscoveredOn {
     private String mobType;
     private String mobName;
     private String regionName;
+    private String itemType;
+    private String command;
+    private Integer customModelData;
+    private String components;
+    private String craftEngineId;
 
     public DiscoveredOn(DiscoveredOnType type) {
         this.type = type;
@@ -43,10 +48,52 @@ public class DiscoveredOn {
         this.regionName = regionName;
     }
 
+    public String getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
+    }
+
+    public String getCommand() {
+        return command;
+    }
+
+    public void setCommand(String command) {
+        this.command = command;
+    }
+
+    public Integer getCustomModelData() {
+        return customModelData;
+    }
+
+    public void setCustomModelData(Integer customModelData) {
+        this.customModelData = customModelData;
+    }
+
+    public String getComponents() {
+        return components;
+    }
+
+    public void setComponents(String components) {
+        this.components = components;
+    }
+
+    public String getCraftEngineId() {
+        return craftEngineId;
+    }
+
+    public void setCraftEngineId(String craftEngineId) {
+        this.craftEngineId = craftEngineId;
+    }
+
     public enum DiscoveredOnType{
         MOB_KILL,
         MYTHIC_MOB_KILL,
         ELITE_MOB_KILL,
-        WORLDGUARD_REGION
+        WORLDGUARD_REGION,
+        ITEM_OBTAIN,
+        COMMAND_RUN
     }
 }
