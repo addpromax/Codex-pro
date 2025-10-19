@@ -40,3 +40,8 @@ dependency-reduced-pom.xml
 .recommenders
 .idea/
 target/
+
+# 参考代码库和临时文件
+参考代码库/
+新建文件夹/
+libs/
