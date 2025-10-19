@@ -1,0 +1,39 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+basic:
+  id: planter
+  name: "播种机"
+  max_level: 3
+
+rarity: 传奇
+targets:
+  - 锄
+
+limitations: [ ]
+
+display:
+  description:
+    general: "右击可范围播种作物(需要种子)"
+    specific: "&7右击可范围播种作物(需要种子) (&a{边长}×&a{边长} &7冷却:&a{冷却}&7)"
+
+variables:
+  leveled:
+    冷却: "秒:3.5-{level}"
+    边长: "格:{level}+1"
+
+mechanisms:
+  listeners:
+    on-right-click:
+      listen: "player-interact"
+      handle: |-
+        if all [ check &event[action] is RIGHT_CLICK_BLOCK check &event[hand] is &trigger-slot ] then {
+          set cd to a-cd check &enchant &player &冷却 true
+        
+          if &cd then {
+            operation plant args array [ &player &边长 ALL ]
+            a-cd add &enchant &player
+          }
+        }

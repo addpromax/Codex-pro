@@ -1,0 +1,26 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+basic:
+  id: luck_of_the_sea
+  name: "海之眷顾"
+  max-level: 3
+
+alternative:
+  is-vanilla: true
+
+rarity: 精良
+targets:
+  - 钓鱼竿
+
+display:
+  description:
+    general: "提高钓鱼时获得宝藏的概率"
+    specific: "&7使钓鱼时获得宝藏的概率提高&a{概率}"
+
+# 原版附魔机制本插件不提供修改，因此此处改了也没有效果
+variables:
+  leveled:
+    概率: "%:2.1*{level}"

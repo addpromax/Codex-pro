@@ -1,0 +1,22 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+basic:
+  id: unbreaking
+  name: "耐久"
+  max-level: 3
+
+alternative:
+  is-vanilla: true
+
+rarity: 罕见
+targets:
+  - 可损坏物品
+
+display:
+  description:
+    general: "减少物品损耗耐久的概率"
+
+# 盔甲和一般物品的生效方式有区别，不方便录入数据

@@ -1,0 +1,13 @@
+main: cx.ajneb97.Codex
+version: 2.5.2
+name: Codex
+api-version: 1.13
+author: Ajneb97
+softdepend: [WorldGuard,WorldEdit,PlaceholderAPI,MythicMobs,Aiyatsbus]
+
+commands:
+  codex:
+    description: Main command of Codex
+  testfishing:
+    description: Debug command for fishing biomes
+    permission: codex.admin

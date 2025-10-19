@@ -1,0 +1,136 @@
+# Codex Configuration
+# Version: 2
+
+# Codex全局设置
+codex:
+  # 是否启用全局调试模式
+  # 启用后将显示所有模块的debug信息（附魔、钓鱼、API、配置等）
+  debug: true
+
+# 存储类型: file, h2, mysql
+# 推荐使用h2，性能更好且无需额外配置
+# - file: 使用YAML文件存储，简单但不支持跨服
+# - h2: 使用嵌入式H2数据库，高性能且无需外部依赖
+# - mysql: 使用MySQL数据库，支持跨服数据共享
+storage_type: h2
+
+# H2数据库配置
+h2_database:
+  # 连接池配置
+  pool:
+    # 连接超时时间(毫秒)
+    connectionTimeout: 5000
+    # 最大连接数
+    maximumPoolSize: 10
+    # 连接保活时间(毫秒)
+    keepaliveTime: 30000
+    # 空闲超时时间(毫秒)
+    idleTimeout: 600000
+    # 连接最大生存时间(毫秒)
+    maxLifetime: 1800000
+
+# MySQL数据库配置(仅在storage_type为mysql时生效)
+mysql_database:
+  # 是否启用MySQL(兼容旧版配置，建议使用storage_type指定数据库类型)
+  enabled: false
+  host: localhost
+  port: 3306
+  database: codex
+  username: root
+  password: password
+  # 连接池配置
+  pool:
+    # 连接超时时间(毫秒)
+    connectionTimeout: 5000
+    # 最大连接数
+    maximumPoolSize: 10
+    # 连接保活时间(毫秒)
+    keepaliveTime: 30000
+    # 空闲超时时间(毫秒)
+    idleTimeout: 600000
+    # 最大生存时间(毫秒)
+    maxLifetime: 1800000
+  # 高级连接参数
+  advanced:
+    # SSL配置
+    verifyServerCertificate: false
+    useSSL: true
+    # 允许公钥检索(MySQL 8.0+需要)
+    allowPublicKeyRetrieval: true
+    # 其他选项
+    autoReconnect: true
+    useUnicode: true
+    characterEncoding: utf8mb4
+
+# 更新检查
+update_notify: true
+
+# 玩家数据保存策略
+# 数据保存模式: "batch" 或 "realtime"
+# - batch: 批量保存模式，定期保存和特定时机保存（推荐，性能好）
+# - realtime: 实时保存模式，数据变化后延迟保存，多次修改合并（安全性高）
+data_save_mode: "realtime"
+
+# 批量保存配置（仅在 data_save_mode 为 "batch" 时生效）
+# 数据保存间隔（秒），默认300秒(5分钟)
+player_data_save: 300
+# 是否启用自动保存功能
+auto_save_enabled: true
+# 是否显示自动保存通知
+show_save_notifications: true
+
+# 实时保存配置（仅在 data_save_mode 为 "realtime" 时生效）
+realtime_save:
+  # 防抖动延迟（秒），数据修改后等待此时间，如果期间没有新修改就保存
+  # 多次修改会重置计时器，最终合并为一次保存
+  debounce_delay: 3
+  # 是否显示实时保存通知
+  show_notifications: false
+
+# 内存管理
+memory_management:
+  # 内存清理间隔（秒），默认1800秒(30分钟)
+  cleanup_interval: 1800
+  # 是否在服务器低负载时自动清理内存中不在线玩家的数据
+  clean_offline_players: true
+
+# Enchantment codex configuration
+enchantments_codex:
+  enabled: true
+  auto_generate: true
+  category_name: "enchantments"
+  main_menu_slot: 24
+  excluded_enchantments:
+    - "minecraft:protection"
+    - "minecraft:infinity"
+
+# 通知设置
+notifications:
+  enabled: true
+  # 各分类的特定设置
+  fishing:
+    enabled: true
+  enchantments:
+    enabled: true
+  history:
+    enabled: true
+  regions:
+    enabled: true
+  monsters:
+    enabled: true
+
+# Format to display dates when a discovery was found.
+discoveries_date_format: "dd/MM/yyyy"
+
+# Format of the %progress_bar% variable on the lore of category items.
+progress_bar_placeholder:
+  filled_symbol: "&a|"
+  empty_symbol: "&c|"
+  amount: 20
+
+# Don't modify.
+config_version: 2
+
+
+
+

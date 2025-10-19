@@ -1,0 +1,98 @@
+# GUI标题和大小
+title: "&0&l附魔分解台"
+size: 54  # 6 行 9×6
+
+# 背景物品
+background:
+  material: BLACK_STAINED_GLASS_PANE
+  name: " "
+  enabled: true
+
+# 输入槽位配置（居中一行）
+input:
+  slots: [28, 29, 30, 31, 32, 33, 34]
+  item:
+    material: GRAY_STAINED_GLASS_PANE
+    name: "&7将要分解的物品放这里"
+    lore:
+      - "&8支持所有带附魔的物品"
+      - "&8放入后会立刻统计点数"
+
+# 按钮配置
+buttons:
+  return:
+    slot: 49
+    material: GREEN_CONCRETE
+    name: "&a返还所有物品"
+    lore:
+      - "&7取回输入槽内的全部物品"
+
+# 池子配置
+pools:
+  common:
+    slot: 10  # 第二行
+    material: PAPER
+    name: "&f普通附魔池"
+    lore:
+      - "&7当前进度: &a%progress%"
+      - "&7点击领取普通附魔奖励"
+    custom-model-data: 1001
+
+  uncommon:
+    slot: 11
+    material: IRON_INGOT
+    name: "&a罕见附魔池"
+    lore:
+      - "&7当前进度: &a%progress%"
+      - "&7点击领取罕见附魔奖励"
+    custom-model-data: 1002
+
+  rare:
+    slot: 12
+    material: GOLD_INGOT
+    name: "&e稀有附魔池"
+    lore:
+      - "&7当前进度: &a%progress%"
+      - "&7点击领取稀有附魔奖励"
+    custom-model-data: 1003
+
+  epic:
+    slot: 14
+    material: DIAMOND
+    name: "&5史诗附魔池"
+    lore:
+      - "&7当前进度: &a%progress%"
+      - "&7点击领取史诗附魔奖励"
+    custom-model-data: 1004
+
+  legendary:
+    slot: 15
+    material: NETHER_STAR
+    name: "&6传奇附魔池"
+    lore:
+      - "&7当前进度: &a%progress%"
+      - "&7点击领取传奇附魔奖励"
+    custom-model-data: 1005
+
+  splendid:
+    slot: 16
+    material: EMERALD
+    name: "&e稀世附魔池"
+    lore:
+      - "&7当前进度: &a%progress%"
+      - "&7点击领取稀世附魔奖励"
+    custom-model-data: 1006
+
+  artifact:
+    slot: 24
+    material: DRAGON_BREATH
+    name: "&d皮肤附魔池"
+    lore:
+      - "&7当前进度: &a%progress%"
+      - "&7点击领取皮肤附魔奖励"
+    custom-model-data: 1008
+
+# 池满时的额外提示
+pool-full-lore:
+  - "&c警告: 池子已满!"
+  - "&c继续添加物品将计入溢出池"

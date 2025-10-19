@@ -1,0 +1,318 @@
+inventories:
+  main_inventory:
+    slots: 45
+    title: "&4Codex &7» &8All Categories"
+    21:
+      type: "category: history"
+    22:
+      type: "category: regions"
+    23:
+      type: "category: monsters"
+    24:
+      type: "category: enchantments"
+    25:
+      type: "category: fishing"
+    0;8;36;44:
+      item:
+        id: RED_STAINED_GLASS_PANE
+        name: " "
+    1;7;9;17;27;35;37;43:
+      item:
+        id: BLACK_STAINED_GLASS_PANE
+        name: " "
+    40:
+      item:
+        id: BARRIER
+        name: '&7Close'
+      click_actions:
+        - "message: &7Closing the menu."
+        - "close_inventory"
+  category_history:
+    slots: 45
+    title: "&4Codex &7» &8History"
+    # 在config节点下配置分页功能
+    # 这里不需要手动设置每个发现项的位置
+    # 使用分页功能自动放置
+    config:
+      pagination:
+        enabled: true
+        items_per_page: 28
+        # 物品范围配置 (可选)
+        # 定义哪些位置用于显示物品
+        item_ranges:
+          range1: 10-16
+          range2: 19-25
+          range3: 28-34
+          range4: 37-43
+        previous_button:
+          slot: 36
+          item:
+            id: PLAYER_HEAD
+            name: "&7上一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+        next_button:
+          slot: 44
+          item:
+            id: PLAYER_HEAD
+            name: "&7下一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19"
+        page_info:
+          slot: 40
+          item:
+            id: PAPER
+            name: "&7第 &e%current_page% &7页，共 &e%total_pages% &7页"
+            lore:
+              - "&7总共 &e%total_items% &7个物品"
+    18:
+      item:
+        id: PLAYER_HEAD
+        name: "&7返回"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    # 确保包括所有边框位置
+    0;1;2;3;4;5;6;7;8;9;17;18;26;27;35;36;37;38;39;40;41;42;43;44:
+      item:
+        id: BLUE_STAINED_GLASS_PANE
+        name: " "
+  category_regions:
+    slots: 45
+    title: "&4Codex &7» &8Regions"
+    # 在config节点下配置分页功能
+    config:
+      pagination:
+        enabled: true
+        items_per_page: 28
+        # 简单配置只定义每页显示物品数量
+        # 物品将按照默认规则放置在GUI中
+        previous_button:
+          slot: 36
+          item:
+            id: PLAYER_HEAD
+            name: "&7上一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+        next_button:
+          slot: 44
+          item:
+            id: PLAYER_HEAD
+            name: "&7下一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19"
+        page_info:
+          slot: 40
+          item:
+            id: PAPER
+            name: "&7第 &e%current_page% &7页，共 &e%total_pages% &7页"
+            lore:
+              - "&7总共 &e%total_items% &7个物品"
+    18:
+      item:
+        id: PLAYER_HEAD
+        name: "&7返回"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    # 确保包括所有边框位置
+    0;1;2;3;4;5;6;7;8;9;17;26;27;35;36;37;38;39;40;41;42;43;44:
+      item:
+        id: BLUE_STAINED_GLASS_PANE
+        name: " "
+  category_monsters:
+    slots: 45
+    title: "&4Codex &7» &8Monsters"
+    # 在config节点下配置分页功能
+    config:
+      pagination:
+        enabled: true
+        items_per_page: 28
+        previous_button:
+          slot: 36
+          item:
+            id: PLAYER_HEAD
+            name: "&7上一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+        next_button:
+          slot: 44
+          item:
+            id: PLAYER_HEAD
+            name: "&7下一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX99"
+        page_info:
+          slot: 40
+          item:
+            id: PAPER
+            name: "&7第 &e%current_page% &7页，共 &e%total_pages% &7页"
+            lore:
+              - "&7总共 &e%total_items% &7个物品"
+    18:
+      item:
+        id: PLAYER_HEAD
+        name: "&7返回"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    # 确保包括所有边框位置
+    0;1;2;3;4;5;6;7;8;9;17;26;27;35;36;37;38;39;40;41;42;43;44:
+      item:
+        id: BLUE_STAINED_GLASS_PANE
+        name: " "
+  category_enchantments:
+    slots: 54
+    title: "&4Codex &7» &8附魔图鉴"
+    # 在config节点下配置分页功能
+    config:
+      pagination:
+        enabled: true
+        items_per_page: 28
+        # 附魔布局: 使用自动布局，不指定固定范围
+        previous_button:
+          slot: 48
+          item:
+            id: PLAYER_HEAD
+            name: "&7上一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+        next_button:
+          slot: 50
+          item:
+            id: PLAYER_HEAD
+            name: "&7下一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19"
+        page_info:
+          slot: 49
+          item:
+            id: PAPER
+            name: "&7第 &e%current_page% &7页，共 &e%total_pages% &7页"
+            lore:
+              - "&7总共 &e%total_items% &7个附魔"
+    18:
+      item:
+        id: PLAYER_HEAD
+        name: "&7返回"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    # 添加边框 - 确保包括顶部行和左右两侧
+    0;1;2;3;4;5;6;7;8;9;17;18;26;27;35;36;44;45;46;47;51;52;53:
+      item:
+        id: PURPLE_STAINED_GLASS_PANE
+        name: " "
+  category_fishing:
+    slots: 54
+    title: "&4Codex &7» &8钓鱼图鉴"
+    # 在config节点下配置分页功能
+    config:
+      pagination:
+        enabled: true
+        items_per_page: 28
+        # 使用自动布局，不指定固定范围
+        previous_button:
+          slot: 48
+          item:
+            id: PLAYER_HEAD
+            name: "&7上一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+        next_button:
+          slot: 50
+          item:
+            id: PLAYER_HEAD
+            name: "&7下一页"
+            skull_data:
+              texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19"
+        page_info:
+          slot: 49
+          item:
+            id: PAPER
+            name: "&7第 &e%current_page% &7页，共 &e%total_pages% &7页"
+            lore:
+              - "&7总共 &e%total_items% &7条钓鱼记录"
+      # 为钓鱼物品添加样式配置
+      discovery_items:
+        unlocked:
+          id: COD
+          # 名称由发现物品的name属性决定
+          lore:
+            - "%description%"
+            - ""
+            - "#7289da发现于: #ffffff%date%"
+            - "#7289da捕获数量: #ffffff%amount%条"
+            - "#7289da最大尺寸: #ffffff%max_size%厘米"
+            - ""
+            - "#7289da可钓生物群系:"
+            - "#ffffff%biomes%"
+            - "#7289da稀有度: #ffffff%rarity%"
+        blocked:
+          id: BARRIER
+          name: "#8c8c8c未知鱼类"
+          lore:
+            - "#8c8c8c继续钓鱼以发现这种鱼!"
+            - ""
+            - "#7289da可钓生物群系: #ffffff%biomes%"
+            - "#7289da稀有度: #ffffff%rarity%"
+            - "#7289da钓鱼环境: #ffffff%environment%"
+    18:
+      item:
+        id: PLAYER_HEAD
+        name: "&7返回"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    # 添加边框 - 使用蓝色玻璃
+    0;1;2;3;4;5;6;7;8;9;17;18;26;27;35;36;44;45;46;47;51;52;53:
+      item:
+        id: LIGHT_BLUE_STAINED_GLASS_PANE
+        name: " "
+
+# 批量添加物品GUI配置
+batch_inventory:
+  title: "&8\u25c6 批量添加物品 \u25c6"
+  size: 54  # 6行
+  # 功能按钮配置
+  confirm_button_slot: 49  # 最后一行中间偏右
+  cancel_button_slot: 53   # 最后一行最右边
+  confirm_button:
+    id: EMERALD_BLOCK
+    name: "&a&l确认添加"
+    lore:
+      - "&7点击确认批量添加所有物品"
+      - "&7将根据物品类型自动创建相应的解锁项"
+      - ""
+      - "&e注意: 此操作无法撤销!"
+  cancel_button:
+    id: REDSTONE_BLOCK
+    name: "&c&l取消"
+    lore:
+      - "&7点击取消批量添加操作"
+  info_button:
+    slot: 45  # 最后一行最左边
+    id: BOOK
+    name: "&f&l使用说明"
+    lore:
+      - "&7将物品放入空格中"
+      - "&7系统将自动检测物品类型并创建对应解锁项:"
+      - "&f- MMOItems物品"
+      - "&f- ItemsAdder物品"
+      - "&f- 附魔物品"
+      - "&f- 原版物品"
+      - ""
+      - "&7完成后点击确认按钮保存"
+  border:
+    slots:
+      - 45
+      - 46
+      - 47
+      - 48
+      - 49
+      - 50
+      - 51
+      - 52
+      - 53
+    id: BLACK_STAINED_GLASS_PANE
+    name: "&8"

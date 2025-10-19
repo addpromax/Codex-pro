@@ -1,0 +1,71 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+basic:
+  id: wings
+  name: "反重力"
+  max-level: 3
+
+rarity: 传奇
+targets:
+  - 靴子
+
+limitations:
+  - "CONFLICT_ENCHANT:经验修补"
+
+display:
+  description:
+    general: "可进入飞行状态，飞行时持续消耗装备耐久"
+    specific: "&7可进入飞行状态，飞行时每&a2秒&7消耗装备&a{消耗耐久}&7耐久"
+
+variables:
+  leveled:
+    消耗耐久: "点:4-{level}"
+
+mechanisms:
+  listeners:
+    on-fall:
+      listen: 'entity-damage'
+      handle: |-
+        if all [ check &event[cause] is FALL has-mark fall-protect on &player ] then {
+          unmark fall-protect on &player
+          set &event[isCancelled] to true
+        }
+  tickers:
+    durability:
+      interval: 40
+      pre-handle: |-
+        set damage to check math div [ type double &item[dura] &item[max-dura] ] <= 0.1
+        if all [ any [ check player gamemode is SURVIVAL check player gamemode is ADVENTURE ] not &damage ] then {
+          player allow flight to true
+        }
+      handle: |-
+        set damage to check math div [ type double &item[dura] &item[max-dura] ] <= 0.1
+        if any [ check player gamemode is SURVIVAL check player gamemode is ADVENTURE ] then {
+          if all [ player on ground has-mark fall-protect on &player ] then {
+            unmark fall-protect on &player
+          }
+          if all [ not player allow flight not &damage ] then {
+            player allow flight to true
+          }
+          if all [
+            &damage
+            player flying
+          ] then {
+            player flying to false
+            player allow flight to false
+            mark fall-protect on &player
+            exit
+          }
+          if player flying then {
+            set dura to type int &消耗耐久
+            item damage &item &dura by &player
+          }
+        }
+      post-handle: |-
+        if any [ check player gamemode is SURVIVAL check player gamemode is ADVENTURE ] then {
+          player allow flight to false
+          player flying to false
+        }

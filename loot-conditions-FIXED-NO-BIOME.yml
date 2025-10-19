@@ -1,0 +1,94 @@
+global-group:
+  list: []
+  conditions: {}
+  sub-groups:
+    loots_in_water:
+      conditions:
+        in-water: true
+        environment:
+        - normal
+        '!rod':
+        - magical_rod
+      list:
+      - rubbish:+10
+      - seagrass:+5
+      - vanilla:+30
+      sub-groups:
+        # 海洋鱼类：使用海洋生物群系条件
+        ocean_fish:
+          conditions:
+            biome:
+            - minecraft:ocean
+            - minecraft:deep_ocean
+            - minecraft:cold_ocean
+            - minecraft:deep_cold_ocean
+            - minecraft:frozen_ocean
+            - minecraft:deep_frozen_ocean
+            - minecraft:lukewarm_ocean
+            - minecraft:deep_lukewarm_ocean
+            - minecraft:warm_ocean
+          list:
+          # 使用 group_for_each 为所有无星级鱼类设置基础权重
+          - 'group_for_each:ocean_fish&no_star:*1'
+          # 使用 group_available_total 为星级鱼类设置权重（占无星级总权重的百分比）
+          - 'group_available_total:ocean_fish&silver_star:={{group_ocean_fish&no_star}}*0.28'
+          - 'group_available_total:ocean_fish&golden_star:={{group_ocean_fish&no_star}}*0.09'
+          - 'group_available_total:ocean_fish&iridium_star:={{group_ocean_fish&no_star}}*0.02'
+        
+        # 淡水鱼类：使用否定的海洋条件（移除依赖，改为必须在水中且在主世界）
+        river_fish:
+          conditions:
+            # 移除 biome 依赖，使用更基础的条件
+            # 只要在水中、在主世界、不是海洋生物群系就行
+            # 由于 biome 判断可能失败，我们使用一个不会失败的条件组合
+            in-water: true
+            environment:
+            - normal
+          list:
+          # 使用 group_for_each 为所有无星级鱼类设置基础权重
+          - 'group_for_each:river_fish&no_star:*1'
+          # 使用 group_available_total 为星级鱼类设置权重（占无星级总权重的百分比）
+          - 'group_available_total:river_fish&silver_star:={{group_river_fish&no_star}}*0.30'
+          - 'group_available_total:river_fish&golden_star:={{group_river_fish&no_star}}*0.10'
+          - 'group_available_total:river_fish&iridium_star:={{group_river_fish&no_star}}*0.02'
+          sub-groups:
+            # 在淡水鱼中，再区分海洋和非海洋
+            # 但这次作为子组，如果 biome 判断失败，至少还有父组的权重
+            river_fish_exclude_ocean:
+              conditions:
+                '!biome':
+                - minecraft:ocean
+                - minecraft:deep_ocean
+                - minecraft:cold_ocean
+                - minecraft:deep_cold_ocean
+                - minecraft:frozen_ocean
+                - minecraft:deep_frozen_ocean
+                - minecraft:lukewarm_ocean
+                - minecraft:deep_lukewarm_ocean
+                - minecraft:warm_ocean
+              list:
+              # 如果 biome 判断成功，这些鱼会得到额外的权重加成
+              - 'group_for_each:river_fish&no_star:*0.5'
+    
+    loots_in_lava:
+      conditions:
+        in-lava: true
+      list: []
+      sub-groups:
+        lava_fish:
+          conditions:
+            environment:
+            - nether
+          list:
+          # 使用 group_for_each 为所有无星级鱼类设置基础权重
+          - 'group_for_each:lava_fish&no_star:*1'
+          # 使用 group_available_total 为星级鱼类设置权重（占无星级总权重的百分比）
+          - 'group_available_total:lava_fish&silver_star:={{group_lava_fish&no_star}}*0.35'
+          - 'group_available_total:lava_fish&golden_star:={{group_lava_fish&no_star}}*0.15'
+          - 'group_available_total:lava_fish&iridium_star:={{group_lava_fish&no_star}}*0.05'
+    
+    global_fixed_rewards:
+      list: {}
+      conditions: {}
+      sub-groups: {}
+

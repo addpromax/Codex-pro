@@ -1,0 +1,20 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+basic:
+  id: aqua_affinity
+  name: "水下速掘"
+  max-level: 1
+
+alternative:
+  is-vanilla: true
+
+rarity: 罕见
+targets:
+  - 头盔
+
+display:
+  description:
+    general: "无视水下的挖掘速度降低效果"

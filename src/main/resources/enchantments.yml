@@ -1,0 +1,191 @@
+# Codex 附魔图鉴配置文件
+# 此文件用于配置附魔图鉴的各种设置
+
+# 基本设置
+settings:
+  # 是否启用附魔图鉴功能
+  enabled: true
+  # 是否自动生成附魔图鉴
+  auto_generate: true
+  # 附魔分类名称
+  category_name: "enchantments"
+  # 附魔分类在主菜单中的位置
+  main_menu_slot: 24
+  # 是否从Aiyatsbus获取附魔信息
+  fetch_aiyatsbus_info: true
+  # 附魔检测冷却时间（毫秒），减少此值会增加检测频率但可能影响性能
+  check_cooldown: 2000
+  # 是否启用调试模式
+  debug: false
+  # 从容器（如箱子）获取附魔物品时是否检测
+  detect_from_containers: true
+  # 容器类型白名单（只检测这些容器类型）
+  container_types:
+    - CHEST
+    - TRAPPED_CHEST
+    - ENDER_CHEST
+    - SHULKER_BOX
+    - BARREL
+    - DISPENSER
+    - DROPPER
+    - HOPPER
+
+# 附魔分类物品设置
+category_item:
+  id: ENCHANTED_BOOK
+  name: "&b附魔图鉴"
+  lore:
+    - "&7发现并收集各种附魔"
+    - "&7了解它们的特性和用途"
+    - ""
+    - "&7已解锁: %unlocked% &8[%progress_bar%&8] &8(&7%percentage%&8)"
+
+# 已解锁的附魔物品设置
+unlocked_item:
+  id: ENCHANTED_BOOK
+  name: "%name%"
+  lore:
+    - "&b&l%enchant_name% &7(最高等级: &e%max_level%&7)"
+    - "&8&o%namespace%:%key%"
+    - ""
+    - "%description%"
+    - ""
+    - "&7适用物品:"
+    - "%applicable_items%"
+    - ""
+    - "&7冲突附魔:"
+    - "%conflicts%"
+    - ""
+    - "&7稀有度: %rarity%"
+    - "&8发现于 %date%"
+
+# 未解锁的附魔物品设置
+locked_item:
+  id: GRAY_DYE
+  name: "&c??"
+  lore:
+    - "&7你还没有发现这个附魔"
+    - "&7继续探索世界以解锁更多附魔"
+
+# 附魔图鉴GUI设置
+gui:
+  title: "&4Codex &7» &8附魔图鉴"
+  size: 54  # 必须是9的倍数 (9, 18, 27, 36, 45, 54)
+  border:
+    enabled: true
+    item:
+      id: PURPLE_STAINED_GLASS_PANE
+      name: " "
+  # 分页设置
+  pagination:
+    enabled: true
+    items_per_page: 28  # 每页显示的附魔数量
+    # 上一页按钮
+    previous_button:
+      slot: 45  # 左下角
+      item:
+        id: PLAYER_HEAD
+        name: "&7上一页"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+    # 下一页按钮
+    next_button:
+      slot: 53  # 右下角
+      item:
+        id: PLAYER_HEAD
+        name: "&7下一页"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19"
+    # 页面信息显示
+    page_info:
+      slot: 49  # 底部中间
+      item:
+        id: PAPER
+        name: "&7第 &e%current_page% &7页，共 &e%total_pages% &7页"
+        lore:
+          - "&7总共 &e%total_items% &7个附魔"
+
+# 附魔发现奖励
+rewards:
+  # 每发现一个附魔的奖励
+  per_discovery:
+    - "message: &a你发现了一个新的附魔: &b%name%&a!"
+    # 减少特效，提高性能
+    # - "title: 20;60;20;&b附魔图鉴;&a发现新附魔: &b%name%"
+    # - "playsound: ENTITY_PLAYER_LEVELUP;1;1"
+  
+  # 发现所有附魔的奖励
+  all_discoveries:
+    - "message: &a恭喜你发现了所有附魔!"
+    - "title: 20;100;20;&b附魔大师;&a你已收集所有附魔!"
+    - "playsound: UI_TOAST_CHALLENGE_COMPLETE;1;1"
+    - "give_exp: 1000"
+
+# 附魔过滤设置
+filter:
+  # 是否包含原版附魔
+  include_vanilla: true
+  # 是否包含Aiyatsbus附魔
+  include_aiyatsbus: true
+  # 排除的附魔列表 (格式: "namespace:key")
+  excluded:
+    - "minecraft:mending"  # 示例：排除经验修补附魔
+    - "minecraft:vanishing_curse" # 排除消失诅咒附魔
+    - "minecraft:binding_curse"  # 排除绑定诅咒附魔
+    # - "aiyatsbus:example"  # 示例：排除Aiyatsbus的某个附魔
+
+# 附魔描述模板
+# 这些模板用于格式化附魔信息的显示方式
+templates:
+  # 默认描述模板，当没有自定义描述时使用
+  default_description:
+    - "&7%aiyatsbus_description%"
+    - "&7最大等级: &e%max_level%"
+  
+  # 适用物品列表模板
+  applicable_items:
+    # 每行最多显示的物品数量
+    items_per_line: 3
+    # 物品显示格式
+    format: "&8- &7%item%"
+    # 当没有适用物品时显示的文本
+    none: "&8- &7无"
+    # 当适用物品过多时显示的文本
+    too_many: "&8- &7以及更多..."
+    # 最多显示的物品数量
+    max_items: 9
+  
+  # 冲突附魔列表模板
+  conflicts:
+    # 每行最多显示的附魔数量
+    enchants_per_line: 2
+    # 附魔显示格式
+    format: "&8- &7%enchant%"
+    # 当没有冲突附魔时显示的文本
+    none: "&8- &7无"
+    # 当冲突附魔过多时显示的文本
+    too_many: "&8- &7以及更多..."
+    # 最多显示的冲突附魔数量
+    max_conflicts: 6
+  
+  # 稀有度显示模板
+  rarity:
+    common: "&7普通"
+    uncommon: "&a罕见"
+    rare: "&9稀有"
+    very_rare: "&5非常稀有"
+    unknown: "&8未知"
+
+# 附魔描述自定义
+# 可以为特定附魔自定义描述，如果未指定则使用默认描述
+# 支持的变量: %aiyatsbus_description%, %max_level%, %namespace%, %key%
+descriptions:
+  "minecraft:sharpness":
+    - "&7增加武器的基础伤害"
+    - "&7每级增加 &e1.25 &7点伤害"
+    - "&7最大等级: &e%max_level%"
+  "minecraft:protection":
+    - "&7提供全方位的伤害保护"
+    - "&7每级减少 &e4% &7的伤害"
+    - "&7最大等级: &e%max_level%"
+  # 可以继续添加更多附魔的自定义描述 

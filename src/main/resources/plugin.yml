@@ -1,0 +1,20 @@
+main: cx.ajneb97.Codex
+version: 2.5.2
+name: Codex
+api-version: 1.13
+author: Ajneb97
+softdepend: [WorldGuard,WorldEdit,PlaceholderAPI,MythicMobs,Aiyatsbus]
+
+# 使用Paper的库加载功能自动下载依赖项
+libraries:
+  - com.zaxxer:HikariCP:4.0.3
+  - com.h2database:h2:1.4.200
+  - org.slf4j:slf4j-api:2.0.0-alpha1
+
+commands:
+  codex:
+    description: Main command of Codex
+  testfishing:
+    description: Debug command for fishing system
+    usage: /testfishing [list|biomes|info|cache] [args]
+    permission: codex.admin

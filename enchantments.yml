@@ -1,0 +1,829 @@
+config:
+  inventory_items:
+    category:
+      id: ENCHANTED_BOOK
+      name: '&b附魔图鉴'
+      lore:
+      - '&7发现并收集各种附魔'
+      - '&7了解它们的特性和用途'
+      - ''
+      - '&7已解锁: %unlocked% &8[%progress_bar%&8] &8(&7%percentage%&8)'
+    discovery_unlocked:
+      id: ENCHANTED_BOOK
+      name: '%name%'
+      lore:
+      - '&b&l%enchant_name% &7(最高等级: &e%max_level%&7)'
+      - '&8&o%namespace%:%key%'
+      - ''
+      - '%description%'
+      - ''
+      - '&7适用物品:'
+      - '%applicable_items%'
+      - ''
+      - '&7冲突附魔:'
+      - '%conflicts%'
+      - ''
+      - '&7稀有度: %rarity%'
+      - '&8发现于 %date%'
+    discovery_blocked:
+      id: GRAY_DYE
+      name: '&c??'
+      lore:
+      - '&7你还没有发现这个附魔'
+      - '&7继续探索世界以解锁更多附魔'
+  rewards:
+    per_discovery:
+    - 'message: &a你发现了一个新的附魔: &b%name%&a!'
+    - 'title: 20;60;20;&b附魔图鉴;&a发现新附魔: &b%name%'
+    - 'playsound: ENTITY_PLAYER_LEVELUP;1;1'
+    all_discoveries:
+    - 'message: &a恭喜你发现了所有附魔!'
+    - 'title: 20;100;20;&b附魔大师;&a你已收集所有附魔!'
+    - 'playsound: UI_TOAST_CHALLENGE_COMPLETE;1;1'
+    - 'give_exp: 1000'
+discoveries:
+  minecraft_planter_potato:
+    name: '&b§x§6§3§b§b§d§0土豆播种机 I'
+    description:
+    - '&7&7PLANTER_POTATO 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:planter_potato
+  minecraft_fragility_curse:
+    name: '&b§x§d§4§2§5§1§7脆弱诅咒 I'
+    description:
+    - '&7&7FRAGILITY_CURSE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:fragility_curse
+  minecraft_backstab:
+    name: '&b§x§6§3§b§b§d§0不意 I'
+    description:
+    - '&7&7BACKSTAB 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:backstab
+  minecraft_luck_of_the_sea:
+    name: '&b§x§6§3§b§b§d§0海之眷顾 I'
+    description:
+    - '&7&7LUCK 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:luck_of_the_sea
+  minecraft_transfuse:
+    name: '&b§x§f§b§a§4§1§4洗炼 I'
+    description:
+    - '&7&7TRANSFUSE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:transfuse
+  minecraft_thorns:
+    name: '&b§x§6§3§b§b§d§0荆棘 I'
+    description:
+    - '&7&7THORNS 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:thorns
+  minecraft_feather_falling:
+    name: '&b§x§6§6§c§1§8§c摔落缓冲 I'
+    description:
+    - '&7&7PROTECTION_FALL 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:feather_falling
+  minecraft_flame:
+    name: '&b§x§6§3§b§b§d§0火矢'
+    description:
+    - '&7&7ARROW_FIRE 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:flame
+  minecraft_economical:
+    name: '&b§x§e§b§5§0§7§e节能 I'
+    description:
+    - '&7&7ECONOMICAL 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:economical
+  minecraft_binding_curse:
+    name: '&b§x§d§4§2§5§1§7绑定诅咒'
+    description:
+    - '&7&7BINDING_CURSE 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:binding_curse
+  minecraft_healing_close_combat:
+    name: '&b§x§f§b§a§4§1§4回春 I'
+    description:
+    - '&7&7HEALING_CLOSE_COMBAT 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:healing_close_combat
+  minecraft_projectile_protection:
+    name: '&b§x§f§8§f§4§e§d弹射物保护 I'
+    description:
+    - '&7&7PROTECTION_PROJECTILE 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:projectile_protection
+  minecraft_razor:
+    name: '&b§x§f§b§a§4§1§4利刃 I'
+    description:
+    - '&7&7RAZOR 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:razor
+  minecraft_smite:
+    name: '&b§x§f§8§f§4§e§d亡灵杀手 I'
+    description:
+    - '&7&7DAMAGE_UNDEAD 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:smite
+  minecraft_frost_walker:
+    name: '&b§x§6§3§b§b§d§0冰霜行者 I'
+    description:
+    - '&7&7FROST_WALKER 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:frost_walker
+  minecraft_punch:
+    name: '&b§x§6§3§b§b§d§0冲击 I'
+    description:
+    - '&7&7ARROW_KNOCKBACK 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:punch
+  minecraft_determination:
+    name: '&b§x§f§b§a§4§1§4决意 I'
+    description:
+    - '&7&7DETERMINATION 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:determination
+  minecraft_sharpness:
+    name: '&b§x§6§6§c§1§8§c锋利 I'
+    description:
+    - '&7增加武器的基础伤害'
+    - '&7每级增加 &e1.25 &7点伤害'
+    - '&7最大等级: &e%max_level%'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:sharpness
+  minecraft_efficiency:
+    name: '&b§x§6§6§c§1§8§c效率 I'
+    description:
+    - '&7&7DIG_SPEED 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:efficiency
+  minecraft_breach:
+    name: '&b§x§f§8§f§4§e§d破甲 I'
+    description:
+    - '&7&7BREACH 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:breach
+  minecraft_replanter:
+    name: '&b§x§6§6§c§1§8§c再植 I'
+    description:
+    - '&7&7REPLANTER 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:replanter
+  minecraft_energizing:
+    name: '&b§x§e§b§5§0§7§e活力 I'
+    description:
+    - '&7&7ENERGIZING 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:energizing
+  minecraft_wings:
+    name: '&b§x§f§b§a§4§1§4反重力 I'
+    description:
+    - '&7&7WINGS 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:wings
+  minecraft_lure:
+    name: '&b§x§6§6§c§1§8§c饵钓 I'
+    description:
+    - '&7&7LURE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:lure
+  minecraft_fire_aspect:
+    name: '&b§x§6§3§b§b§d§0火焰附加 I'
+    description:
+    - '&7&7FIRE_ASPECT 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:fire_aspect
+  minecraft_twinge:
+    name: '&b§x§f§b§a§4§1§4扎刺 I'
+    description:
+    - '&7&7TWINGE 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:twinge
+  minecraft_density:
+    name: '&b§x§f§8§f§4§e§d致密 I'
+    description:
+    - '&7&7DENSITY 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:density
+  minecraft_piercing:
+    name: '&b§x§6§6§c§1§8§c穿透 I'
+    description:
+    - '&7&7PIERCING 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:piercing
+  minecraft_swift_sneak:
+    name: '&b§x§6§3§b§b§d§0迅捷潜行 I'
+    description:
+    - '&7&7SWIFT_SNEAK 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:swift_sneak
+  minecraft_stamina:
+    name: '&b§x§6§6§c§1§8§c耐性 I'
+    description:
+    - '&7&7STAMINA 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:stamina
+  minecraft_planter:
+    name: '&b§x§f§b§a§4§1§4播种机 I'
+    description:
+    - '&7&7PLANTER 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:planter
+  minecraft_propulsion:
+    name: '&b§x§e§b§5§0§7§e推进器'
+    description:
+    - '&7&7PROPULSION 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:propulsion
+  minecraft_swallow:
+    name: '&b§x§6§6§c§1§8§c吞噬 I'
+    description:
+    - '&7&7SWALLOW 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:swallow
+  minecraft_unbreaking:
+    name: '&b§x§6§6§c§1§8§c耐久 I'
+    description:
+    - '&7&7DURABILITY 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:unbreaking
+  minecraft_quick_charge:
+    name: '&b§x§6§6§c§1§8§c快速装填 I'
+    description:
+    - '&7&7QUICK_CHARGE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:quick_charge
+  minecraft_riptide:
+    name: '&b§x§6§6§c§1§8§c激流 I'
+    description:
+    - '&7&7RIPTIDE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:riptide
+  minecraft:annihilate:
+    name: '&b§x§e§b§5§0§7§e威慑 I'
+    description:
+    - '&7&7ANNIHILATE 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:annihilate
+  minecraft_fortune:
+    name: '&b§x§e§b§5§0§7§e时运 I'
+    description:
+    - '&7&7LOOT_BONUS_BLOCKS 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:fortune
+  minecraft_kinetic:
+    name: '&b§x§6§6§c§1§8§c制动 I'
+    description:
+    - '&7&7KINETIC 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:kinetic
+  minecraft_knockback:
+    name: '&b§x§6§6§c§1§8§c击退 I'
+    description:
+    - '&7&7KNOCKBACK 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:knockback
+  minecraft_bouncy_arrow:
+    name: '&b§x§f§b§d§a§4§1跃动'
+    description:
+    - '&7&7BOUNCY_ARROW 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:bouncy_arrow
+  minecraft_fire_protection:
+    name: '&b§x§6§6§c§1§8§c火焰保护 I'
+    description:
+    - '&7&7PROTECTION_FIRE 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:fire_protection
+  minecraft_power:
+    name: '&b§x§6§3§b§b§d§0力量 I'
+    description:
+    - '&7&7ARROW_DAMAGE 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:power
+  minecraft_vein:
+    name: '&b§x§e§b§5§0§7§e脉络 I'
+    description:
+    - '&7&7VEIN 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:vein
+  minecraft_blast_mining:
+    name: '&b§x§6§3§b§b§d§0立方'
+    description:
+    - '&7&7BLAST_MINING 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:blast_mining
+  minecraft_jelly_legs:
+    name: '&b§x§6§3§b§b§d§0弹跳鞋 I'
+    description:
+    - '&7&7JELLY_LEGS 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:jelly_legs
+  minecraft_celebral:
+    name: '&b§x§e§b§5§0§7§e穿颅 I'
+    description:
+    - '&7&7CELEBRAL 附魔'
+    - '&7最大等级: &e6'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:celebral
+  minecraft_aqua_affinity:
+    name: '&b§x§6§6§c§1§8§c水下速掘'
+    description:
+    - '&7&7WATER_WORKER 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:aqua_affinity
+  minecraft_sweeping_edge:
+    name: '&b§x§6§6§c§1§8§c横扫之刃 I'
+    description:
+    - '&7&7SWEEPING_EDGE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:sweeping_edge
+  minecraft_planter_carrot:
+    name: '&b§x§6§3§b§b§d§0胡萝卜播种机 I'
+    description:
+    - '&7&7PLANTER_CARROT 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:planter_carrot
+  minecraft_wind_burst:
+    name: '&b§x§f§8§f§4§e§d风暴 I'
+    description:
+    - '&7&7WIND_BURST 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:wind_burst
+  minecraft_wisdom:
+    name: '&b§x§6§3§b§b§d§0智识 I'
+    description:
+    - '&7&7WISDOM 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:wisdom
+  minecraft_breaklessness_curse:
+    name: '&b§x§d§4§2§5§1§7无力诅咒 I'
+    description:
+    - '&7&7BREAKLESSNESS_CURSE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:breaklessness_curse
+  minecraft_tornado:
+    name: '&b§x§e§b§5§0§7§e击飞 I'
+    description:
+    - '&7&7TORNADO 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:tornado
+  minecraft_swallowing_curse:
+    name: '&b§x§d§4§2§5§1§7吞噬诅咒'
+    description:
+    - '&7&7SWALLOWING_CURSE 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:swallowing_curse
+  minecraft_vanishing_curse:
+    name: '&b§x§d§4§2§5§1§7消失诅咒'
+    description:
+    - '&7&7VANISHING_CURSE 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:vanishing_curse
+  minecraft_strike:
+    name: '&b§x§e§b§5§0§7§e天雷 I'
+    description:
+    - '&7&7STRIKE 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:strike
+  minecraft_grapple:
+    name: '&b§x§e§b§5§0§7§e迫近 I'
+    description:
+    - '&7&7GRAPPLE 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:grapple
+  minecraft_impaling:
+    name: '&b§x§6§3§b§b§d§0穿刺 I'
+    description:
+    - '&7&7IMPALING 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:impaling
+  minecraft_blast_protection:
+    name: '&b§x§f§8§f§4§e§d爆炸保护 I'
+    description:
+    - '&7&7PROTECTION_EXPLOSIONS 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:blast_protection
+  minecraft_bane_of_arthropods:
+    name: '&b§x§f§8§f§4§e§d节肢杀手 I'
+    description:
+    - '&7&7DAMAGE_ARTHROPODS 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:bane_of_arthropods
+  minecraft_explosion_arrow:
+    name: '&b§x§f§b§d§a§4§1炸弹 I'
+    description:
+    - '&7&7EXPLOSION_ARROW 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:explosion_arrow
+  minecraft_indestructibility:
+    name: '&b§x§f§b§a§4§1§4重铸 I'
+    description:
+    - '&7&7INDESTRUCTIBILITY 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:indestructibility
+  minecraft_permanence_curse:
+    name: '&b§x§d§4§2§5§1§7烙印诅咒'
+    description:
+    - '&7&7PERMANENCE_CURSE 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:permanence_curse
+  minecraft_vitalize:
+    name: '&b§x§f§b§a§4§1§4急救 I'
+    description:
+    - '&7&7VITALIZE 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:vitalize
+  minecraft_launch:
+    name: '&b§x§e§b§5§0§7§e能源 I'
+    description:
+    - '&7&7LAUNCH 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:launch
+  minecraft_silk_touch:
+    name: '&b§x§6§3§b§b§d§0精准采集'
+    description:
+    - '&7&7SILK_TOUCH 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:silk_touch
+  minecraft_healing_ranged_combat:
+    name: '&b§x§f§b§a§4§1§4妙手 I'
+    description:
+    - '&7&7HEALING_RANGED_COMBAT 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:healing_ranged_combat
+  minecraft_looting:
+    name: '&b§x§e§b§5§0§7§e抢夺 I'
+    description:
+    - '&7&7LOOT_BONUS_MOBS 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:looting
+  minecraft_depth_strider:
+    name: '&b§x§6§3§b§b§d§0深海探索者 I'
+    description:
+    - '&7&7DEPTH_STRIDER 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:depth_strider
+  minecraft_soul_speed:
+    name: '&b§x§6§6§c§1§8§c灵魂疾行 I'
+    description:
+    - '&7&7SOUL_SPEED 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:soul_speed
+  minecraft_stand_and_fight:
+    name: '&b§x§e§b§5§0§7§e浴血 I'
+    description:
+    - '&7&7STAND_AND_FIGHT 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:stand_and_fight
+  minecraft_respiration:
+    name: '&b§x§6§6§c§1§8§c水下呼吸 I'
+    description:
+    - '&7&7OXYGEN 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:respiration
+  minecraft_calling_curse:
+    name: '&b§x§d§4§2§5§1§7仇恶诅咒'
+    description:
+    - '&7&7CALLING_CURSE 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:calling_curse
+  minecraft_loyalty:
+    name: '&b§x§6§3§b§b§d§0忠诚 I'
+    description:
+    - '&7&7LOYALTY 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:loyalty
+  minecraft_telekinesis:
+    name: '&b§x§6§3§b§b§d§0吸星'
+    description:
+    - '&7&7TELEKINESIS 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:telekinesis
+  minecraft_planter_beetroot:
+    name: '&b§x§6§3§b§b§d§0甜菜播种机 I'
+    description:
+    - '&7&7PLANTER_BEETROOT 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:planter_beetroot
+  minecraft_planter_wheat:
+    name: '&b§x§6§3§b§b§d§0小麦播种机 I'
+    description:
+    - '&7&7PLANTER_WHEAT 附魔'
+    - '&7最大等级: &e3'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:planter_wheat
+  minecraft_accumulating:
+    name: '&b§x§e§b§5§0§7§e蓄能 I'
+    description:
+    - '&7&7ACCUMULATING 附魔'
+    - '&7最大等级: &e2'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:accumulating
+  minecraft_rage:
+    name: '&b§x§6§6§c§1§8§c煽动 I'
+    description:
+    - '&7&7RAGE 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:rage
+  minecraft_infinity:
+    name: '&b§x§e§b§5§0§7§e无限'
+    description:
+    - '&7&7ARROW_INFINITE 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:infinity
+  minecraft_protection:
+    name: '&b§x§6§3§b§b§d§0保护 I'
+    description:
+    - '&7提供全方位的伤害保护'
+    - '&7每级减少 &e4% &7的伤害'
+    - '&7最大等级: &e%max_level%'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:protection
+  minecraft_nocturnal:
+    name: '&b§x§6§3§b§b§d§0夜伏 I'
+    description:
+    - '&7&7NOCTURNAL 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:nocturnal
+  minecraft_multishot:
+    name: '&b§x§6§6§c§1§8§c多重射击'
+    description:
+    - '&7&7MULTISHOT 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:multishot
+  minecraft_fury:
+    name: '&b§x§6§6§c§1§8§c规劝 I'
+    description:
+    - '&7&7FURY 附魔'
+    - '&7最大等级: &e5'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:fury
+  minecraft_impact:
+    name: '&b§x§e§b§5§0§7§e会心 I'
+    description:
+    - '&7&7IMPACT 附魔'
+    - '&7最大等级: &e4'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:impact
+  minecraft_channeling:
+    name: '&b§x§f§8§f§4§e§d引雷'
+    description:
+    - '&7&7CHANNELING 附魔'
+    - '&7最大等级: &e1'
+    discovered_on:
+      type: ENCHANTMENT_DISCOVER
+      value:
+        enchantment_id: minecraft:channeling

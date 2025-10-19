@@ -1,0 +1,33 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+basic:
+  id: swift_sneak
+  name: "迅捷潜行"
+  max-level: 3
+
+alternative:
+  is-vanilla: true
+  is-cursed: false
+  is-treasure: true
+  is-tradeable: false
+  is-discoverable: false
+
+rarity: 精良
+targets:
+  - 护腿
+
+limitations:
+  - "CONFLICT_GROUP:原版移动机制类附魔"
+
+display:
+  description:
+    general: "提高玩家潜行时的移动速度"
+    specific: "&7潜行时的移动速度提高&a{速度}"
+
+# 原版附魔机制本插件不提供修改，因此此处改了也没有效果
+variables:
+  leveled:
+    速度: "%:50*{level}"

@@ -1,0 +1,195 @@
+prefix: "&9[&bCodex&9] "
+noPermissions: "&c你没有权限。"
+configReloaded: "&a配置已重载。"
+discoveryDoesNotExist: "&c该发现不存在于分类 &7%category%&c。"
+categoryDoesNotExist: "&c该分类不存在。"
+playerDoesNotExists: "&c该玩家没有任何数据。"
+commandResetPlayerError: "&c用法: &7/codex resetplayer <玩家>/* (可选)<分类> (可选)<发现>"
+commandResetAllForAllPlayers: "&a所有玩家的数据已重置。"
+commandResetAllForPlayer: "&a玩家 &7%player%&a 的所有数据已重置。"
+commandResetCategoryForAllPlayers: "&a分类 &7%category% &a已为所有玩家重置。"
+commandResetCategoryForPlayer: "&a分类 &7%category% &a已为玩家 &7%player%&a 重置。"
+commandResetDiscoveryForAllPlayers: "&a发现 &7%discovery% &a（分类 &7%category%&a）已为所有玩家重置。"
+commandResetDiscoveryForPlayer: "&a发现 &7%discovery% &a（分类 &7%category%&a）已为玩家 &7%player%&a 重置。"
+currentUnlockedDiscoveriesColorNone: "&c0&8/&c%max%"
+currentUnlockedDiscoveriesColorAll: "&a%current%&8/&a%max%"
+currentUnlockedDiscoveriesColorIncomplete: "&e%current%&8/&e%max%"
+commandHelpNoValidPage: "&c该页不存在。"
+commandUnlockErrorUse: "&c用法: &7/codex unlock <玩家> <分类> <发现> (可选, 是否发送消息)<true/false>"
+playerNotOnline: "&c该玩家不在线。"
+playerAlreadyHasDiscovery: "&c玩家 &7%player% &c已解锁发现 &7%discovery% &c（分类 &7%category%&c）。"
+playerUnlockDiscovery: "&a玩家 &7%player% &a已解锁发现 &7%discovery% &a（分类 &7%category%&a）！"
+
+# 各分类的发现通知配置
+discovery:
+  fishing:
+    notificationMessage: "&b✧ &a你发现了新鱼: &f%discovery%"
+    sound: "ENTITY_PLAYER_LEVELUP"
+    volume: 0.5
+    pitch: 1.0
+  enchantments:
+    notificationMessage: "&d✧ &a你发现了新附魔: &f%discovery%"
+    sound: "BLOCK_ENCHANTMENT_TABLE_USE"
+    volume: 0.6
+    pitch: 1.2
+  history:
+    notificationMessage: "&e✧ &a你发现了新历史: &f%discovery%"
+    sound: "ENTITY_PLAYER_LEVELUP"
+    volume: 0.5
+    pitch: 1.0
+  regions:
+    notificationMessage: "&6✧ &a你发现了新区域: &f%discovery%"
+    sound: "ENTITY_PLAYER_LEVELUP"
+    volume: 0.5
+    pitch: 0.8
+  monsters:
+    notificationMessage: "&c✧ &a你发现了新怪物: &f%discovery%"
+    sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
+    volume: 0.5
+    pitch: 1.0
+
+commandOpenErrorUse: "&c用法: &7/codex open <玩家> <物品栏>"
+inventoryDoesNotExists: "&c物品栏 &7%inventory% &c不存在。"
+playerOpenInventory: "&a物品栏 &7%inventory% &a已为 &e%player%&a 打开！"
+commandDoesNotExist: "&c该命令不存在。"
+pluginCriticalErrors: "&c插件检测到一些错误。请使用 &7/codex verify &c查看。"
+clickActionsCooldown: "&c你必须等待 &7%time% &c后才能再次使用该物品。"
+seconds: 秒
+minutes: 分钟
+hours: 小时
+days: 天
+
+helpCommandPage1:
+- "&6&m-----------------------------------------------------"
+- "&e&lCodex &f- &7图鉴插件 &8- &7页面 &f1&7/&f2"
+- "&6&m-----------------------------------------------------"
+- "&b/codex &8- &7打开主菜单"
+- "&b/codex help [页码] &8- &7显示帮助菜单"
+- "&b/codex reload &8- &7重载配置文件"
+- "&b/codex verify &8- &7验证配置文件"
+- "&b/codex open <玩家> <库存名称> &8- &7为玩家打开指定库存"
+- "&b/codex resetplayer <玩家> [分类] [发现项] &8- &7重置玩家数据"
+- "&b/codex unlock <玩家> <分类> <发现项> [发送消息] &8- &7为玩家解锁发现项"
+- "&b/codex debug <on/off> &8- &7开启/关闭调试模式"
+- "&b/codex autosave <on/off> &8- &7开启/关闭自动保存功能"
+- "&b/codex debugenchants &8- &7打印所有附魔ID和中文名称的映射关系"
+- "&6&m-----------------------------------------------------"
+helpCommandPage2:
+- "&6&m-----------------------------------------------------"
+- "&e&lCodex &f- &7图鉴插件 &8- &7页面 &f2&7/&f2"
+- "&6&m-----------------------------------------------------"
+- "&b/codex reloadenchants &8- &7重新加载附魔信息"
+- "&b/codex db info &8- &7显示数据库信息"
+- "&b/codex db migrate <源> <目标> &8- &7迁移数据库数据"
+- "&6&m-----------------------------------------------------"
+
+# 控制台和插件状态消息
+hookCraftEngine: "&7CraftEngine 插件检测: %status%"
+hookItemsAdder: "&7ItemsAdder 插件检测: %status%"
+hookAiyatsbus: "&7Aiyatsbus 插件检测: %status%"
+hookCustomFishing: "&7CustomFishing 插件检测: %status%"
+pluginEnabled: "&e插件已启用！&f版本: %version%"
+pluginDisabled: "&e插件已禁用！&f版本: %version%"
+pluginThanks: "&e感谢使用本插件！   &f~Ajneb97"
+pluginErrorReload: "&c重载配置时发生错误，请检查控制台。"
+pluginErrorShutdown: "&e插件正在关闭..."
+pluginErrorCritical: "&c插件检测到一些错误。请使用 &7/codex verify &c查看。"
+
+# VerifyManager相关
+verifyNoError: "&a插件未检测到任何错误 ;)"
+verifyErrorHover: "&e&o将鼠标悬停在错误上查看更多信息。"
+verifyTitle: "&f&l- - - - - - - - &6&lCODEX 校验 &f&l- - - - - - - -"
+verifyError: "&e这是一个错误！"
+verifyWarning: "&e这是一个警告！"
+verifyActionInvalid: "&7操作 (&c%actionGroup%&7,&c%actionId%&7) 在文件 &c%file% &7无效。"
+verifyActionFormat: "&f定义的操作可能"
+verifyActionNotFormatted: "&f格式不正确："
+verifyActionRemember: "&f请使用下列列表中的有效操作："
+verifyActionDoc: "&ahttps://ajneb97.gitbook.io/codex/actions"
+verifyInventoryNotFound: "&7物品栏 &c%inventory% &7未找到"
+verifyInventoryInvalid: "&7物品栏 &c%inventory% &7无效"
+verifySlotInvalid: "&7物品栏 &c%inventory% &7的某个物品槽无效"
+verifyInvalidItem: "&7物品材质 &c%material% &7在文件 &c%file% &7无效。"
+verifyInvalidCategory: "&7无效的分类名 &c%category% &7在文件 &c%file%"
+verifyInvalidDiscovery: "&7无效的发现名 &c%discovery% &7在文件 &c%file%"
+verifyHoverError: "&e这是一个错误！"
+verifyHoverWarning: "&e这是一个警告！"
+verifyHoverInfo: "&e&o将鼠标悬停在错误上查看更多信息。"
+verifyHoverDoc: "&ahttps://ajneb97.gitbook.io/codex/actions"
+soundInvalid: "&7音效名称: &c%sound% &7无效。请在配置中更改！"
+
+needAiyatsbus: "&c无法打开附魔图鉴，需要安装Aiyatsbus插件。"
+noPermission: "&c你没有权限执行此操作。"
+operationSuccess: "&a操作成功！"
+debugUsage: "&c用法: /codex debug <on/off>"
+debugInvalidOption: "&c无效选项，请使用 on 或 off"
+debugEnabled: "&a调试模式已开启"
+debugDisabled: "&a调试模式已关闭"
+debugEnchantsStart: "&a开始打印所有附魔ID和中文名称的映射关系，请查看控制台"
+debugEnchantsFinish: "&a打印完成，请查看控制台"
+reloadEnchantsStart: "&7正在清除附魔缓存并重新加载附魔信息..."
+reloadEnchantsSuccess: "&a附魔信息已重新加载！"
+reloadEnchantsTip: "&7提示：请重新打开物品栏以查看更改"
+updateAvailable: "&c有新版本可用: &e(&7%version%&e)"
+updateDownload: "&c你可以在此下载: &fhttps://modrinth.com/plugin/codex-rpg-discoveries"
+updateDownloadLink: "&c下载地址: &fhttps://modrinth.com/plugin/codex-rpg-discoveries"
+updateError: "&c检查更新时出错。"
+configReloadError: "&c重载配置时出错，请检查控制台。"
+pluginClosing: "&e插件正在关闭..."
+legacyVersionError: "&c检测到旧版本配置文件，请更新配置。"
+legacyVersionLink: "&c请访问 &fhttps://modrinth.com/plugin/codex-rpg-discoveries &c获取更多信息。"
+
+setupEnchantmentCategoryStart: "&7开始设置附魔分类..."
+enchantmentCategoryDisabled: "&7附魔图鉴功能已禁用"
+enchantmentCategoryAutoGenerateDisabled: "&7附魔图鉴自动生成已禁用"
+enchantmentCategoryName: "&7附魔分类名称: &b%name%"
+enchantmentCategoryExists: "&7附魔分类 &b%name% &7已存在，跳过生成"
+setupEnchantmentCategoryGenerating: "&7正在生成附魔分类..."
+enchantmentCategoryAdded: "&7附魔分类已添加到分类管理器"
+updateMainInventoryWithEnchantmentsStart: "&7正在更新主菜单，添加附魔分类按钮..."
+setupEnchantmentGUIConfigStart: "&7正在添加附魔分类GUI配置..."
+enchantmentGUIConfigEmpty: "&c附魔GUI配置为空，生成失败。"
+addInventoryConfig: "&7正在添加库存配置: category_%name%"
+reloadInventoryConfigStart: "&7正在重新加载库存配置..."
+enchantmentGUIConfigSuccess: "&a附魔图鉴GUI配置成功加载!"
+enchantmentGUIConfigFailed: "&c附魔图鉴GUI配置未成功加载，请检查配置格式"
+setupEnchantmentCategorySuccess: "&a成功生成附魔图鉴!"
+setupEnchantmentCategoryError: "&c生成附魔图鉴时出错: %error%"
+syncEnchantmentsDatabaseStart: "&7开始同步附魔数据库..."
+syncEnchantmentsCategoryNameEmpty: "&c附魔分类名称为空，无法同步。"
+syncEnchantmentsCategory: "&7正在同步附魔分类: &b%name%"
+syncEnchantmentsEnchantmentsCount: "&7已注册附魔数量: &b%count%"
+syncEnchantmentsAddTestEnchantment: "&7已添加测试附魔: minecraft:annihilate"
+syncEnchantmentsDatabaseSuccess: "&a附魔数据库同步成功!"
+syncEnchantmentsDatabaseSkipped: "&c数据库管理器未初始化，跳过同步。"
+syncEnchantmentsDatabaseError: "&c同步附魔数据库时出错: %error%"
+
+setupFishingCategoryStart: "&7开始设置钓鱼分类..."
+fishingCategoryDisabled: "&7钓鱼图鉴功能已禁用"
+fishingCategoryAutoGenerateDisabled: "&7钓鱼图鉴自动生成已禁用"
+fishingCategoryName: "&7钓鱼分类名称: &b%name%"
+fishingCategoryExists: "&7钓鱼分类 &b%name% &7已存在，跳过生成"
+setupFishingCategoryGenerating: "&7正在生成钓鱼分类..."
+fishingCategoryAdded: "&7钓鱼分类已添加到分类管理器"
+setupFishingCategoryComplete: "&7钓鱼分类设置完成!"
+setupFishingCategoryError: "&c设置钓鱼分类时发生错误: %error%"
+
+# 自动保存命令
+autoSaveUsage: "&c用法: /codex autosave <on/off>"
+autoSaveInvalidOption: "&c无效选项，请使用 on 或 off"
+autoSaveEnabled: "&a自动保存功能已开启"
+autoSaveDisabled: "&a自动保存功能已关闭"
+
+# 批量添加物品相关消息
+batchNoItems: "&c没有发现任何可添加的物品！"
+batchItemsProcessed: "&a成功处理 &e%processed%&a/%total% &a个物品！"
+batchItemsProcessedWithCategory: "&a成功处理 &e%processed%&a/%total% &a个物品并添加到分类 &e%category%&a！"
+batchItemOpened: "&a已打开批量添加物品界面"
+batchItemOpenedWithCategory: "&a已打开批量添加物品界面，将创建分类: &e%category%"
+batchNoPermission: "&c你没有权限使用批量添加物品功能"
+batchItemExists: "&e警告: 跳过 %item_name% &e因为该物品已存在！"
+batchCategoryExists: "&c无法创建分类 &e%category%&c，该分类已存在！"
+batchMissingCategory: "&c请指定一个新的分类名称: &e/codex batch <分类名称>"
+
+# 基本消息
+mustBeAPlayer: "&c这个命令只能由玩家执行！"

@@ -1,0 +1,26 @@
+
+
+#         Powered by TabooLib 6.2         #
+
+
+basic:
+  id: fortune
+  name: "时运"
+  max-level: 3
+
+alternative:
+  is-vanilla: true
+
+rarity: 史诗
+targets:
+  - 斧
+  - 镐
+  - 铲
+  - 锄
+
+limitations:
+  - "CONFLICT_ENCHANT:精准采集"
+
+display:
+  description:
+    general: "提高破坏方块时物品的掉落数量或概率"

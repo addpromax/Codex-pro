@@ -1,0 +1,74 @@
+global-group:
+  list: []
+  conditions: {}
+  sub-groups:
+    loots_in_water:
+      conditions:
+        in-water: true
+        environment:
+        - normal
+        '!rod':
+        - magical_rod
+      list:
+      - rubbish:+10
+      - seagrass:+5
+      - vanilla:+30
+      sub-groups:
+        ocean_fish:
+          conditions:
+            biome:
+            - minecraft:ocean
+            - minecraft:deep_ocean
+            - minecraft:cold_ocean
+            - minecraft:deep_cold_ocean
+            - minecraft:frozen_ocean
+            - minecraft:deep_frozen_ocean
+            - minecraft:lukewarm_ocean
+            - minecraft:deep_lukewarm_ocean
+            - minecraft:warm_ocean
+          list:
+          # 使用 group_for_each 为所有无星级鱼类设置基础权重（使用+而不是*）
+          - 'group_for_each:ocean_fish&no_star:+15'
+          # 使用 group_for_each 为星级鱼类设置权重
+          - 'group_for_each:ocean_fish&silver_star:+4'
+          - 'group_for_each:ocean_fish&golden_star:+1'
+          - 'group_for_each:ocean_fish&iridium_star:+1'
+        river_fish:
+          conditions:
+            '!biome':
+            - minecraft:ocean
+            - minecraft:deep_ocean
+            - minecraft:cold_ocean
+            - minecraft:deep_cold_ocean
+            - minecraft:frozen_ocean
+            - minecraft:deep_frozen_ocean
+            - minecraft:lukewarm_ocean
+            - minecraft:deep_lukewarm_ocean
+            - minecraft:warm_ocean
+          list:
+          # 使用 group_for_each 为所有无星级鱼类设置基础权重（使用+而不是*）
+          - 'group_for_each:river_fish&no_star:+15'
+          # 使用 group_for_each 为星级鱼类设置权重
+          - 'group_for_each:river_fish&silver_star:+5'
+          - 'group_for_each:river_fish&golden_star:+2'
+          - 'group_for_each:river_fish&iridium_star:+1'
+    loots_in_lava:
+      conditions:
+        in-lava: true
+      list: []
+      sub-groups:
+        lava_fish:
+          conditions:
+            environment:
+            - nether
+          list:
+          # 使用 group_for_each 为所有无星级鱼类设置基础权重（使用+而不是*）
+          - 'group_for_each:lava_fish&no_star:+15'
+          # 使用 group_for_each 为星级鱼类设置权重
+          - 'group_for_each:lava_fish&silver_star:+5'
+          - 'group_for_each:lava_fish&golden_star:+2'
+          - 'group_for_each:lava_fish&iridium_star:+1'
+    global_fixed_rewards:
+      list: {}
+      conditions: {}
+      sub-groups: {}

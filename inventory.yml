@@ -1,0 +1,182 @@
+inventories:
+  category_enchantments:
+    slots: 54
+    title: "&4Codex &7» &8附魔图鉴"
+    10:
+      type: "discovery: minecraft_planter_potato"
+    11:
+      type: "discovery: minecraft_fragility_curse"
+    12:
+      type: "discovery: minecraft_backstab"
+    13:
+      type: "discovery: minecraft_luck_of_the_sea"
+    14:
+      type: "discovery: minecraft_transfuse"
+    15:
+      type: "discovery: minecraft_thorns"
+    16:
+      type: "discovery: minecraft_feather_falling"
+    19:
+      type: "discovery: minecraft_flame"
+    20:
+      type: "discovery: minecraft_economical"
+    21:
+      type: "discovery: minecraft_binding_curse"
+    22:
+      type: "discovery: minecraft_healing_close_combat"
+    23:
+      type: "discovery: minecraft_projectile_protection"
+    24:
+      type: "discovery: minecraft_razor"
+    25:
+      type: "discovery: minecraft_smite"
+    28:
+      type: "discovery: minecraft_frost_walker"
+    29:
+      type: "discovery: minecraft_punch"
+    30:
+      type: "discovery: minecraft_determination"
+    31:
+      type: "discovery: minecraft_sharpness"
+    32:
+      type: "discovery: minecraft_efficiency"
+    33:
+      type: "discovery: minecraft_breach"
+    34:
+      type: "discovery: minecraft_replanter"
+    37:
+      type: "discovery: minecraft_energizing"
+    38:
+      type: "discovery: minecraft_wings"
+    39:
+      type: "discovery: minecraft_lure"
+    40:
+      type: "discovery: minecraft_fire_aspect"
+    41:
+      type: "discovery: minecraft_twinge"
+    42:
+      type: "discovery: minecraft_density"
+    43:
+      type: "discovery: minecraft_piercing"
+    49:
+      item:
+        id: PLAYER_HEAD
+        name: "&7返回"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    45:
+      item:
+        id: PLAYER_HEAD
+        name: "&7上一页"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      click_actions:
+        - "enchant_page_previous"
+    53:
+      item:
+        id: PLAYER_HEAD
+        name: "&7下一页"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNjgyYWQxYjljYjRkZDIxMjU5YzBkNzVhYTMxNWZmMzg5YzNjZWY3NTJiZTM5NDkzMzgxNjRiYWM4NGE5NmUifX19"
+      click_actions:
+        - "enchant_page_next"
+    49:
+      item:
+        id: PAPER
+        name: "&7第 &e%current_page% &7页，共 &e%total_pages% &7页"
+        lore:
+          - "&7总共 &e%total_items% &7个附魔"
+    0;45;1;46;2;47;3;48;4;49;5;50;6;51;7;52;8;53;9;17;18;26;27;35;36;44:
+      item:
+        id: PURPLE_STAINED_GLASS_PANE
+        name: " "
+
+  main_inventory:
+    slots: 45
+    title: "&4Codex &7» &8All Categories"
+    21:
+      type: "category: history"
+    22:
+      type: "category: regions"
+    23:
+      type: "category: monsters"
+    24:
+      type: "category: enchantments"
+    0;8;36;44:
+      item:
+        id: RED_STAINED_GLASS_PANE
+        name: " "
+    1;7;9;17;27;35;37;43:
+      item:
+        id: BLACK_STAINED_GLASS_PANE
+        name: " "
+    40:
+      item:
+        id: BARRIER
+        name: '&7Close'
+      click_actions:
+        - "message: &7Closing the menu."
+        - "close_inventory"
+  category_history:
+    slots: 45
+    title: "&4Codex &7» &8History"
+    11:
+      type: "discovery: irium_attack_on_kryngel"
+    39:
+      item:
+        id: PLAYER_HEAD
+        name: "&7Go Back"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    0;8;36;44:
+      item:
+        id: BLUE_STAINED_GLASS_PANE
+        name: " "
+    1;7;9;17;27;35;37;43:
+      item:
+        id: BLACK_STAINED_GLASS_PANE
+        name: " "
+  category_regions:
+    slots: 45
+    title: "&4Codex &7» &8Regions"
+    11:
+      type: "discovery: shadow_swamp"
+    12:
+      type: "discovery: city_of_kryngel"
+    39:
+      item:
+        id: PLAYER_HEAD
+        name: "&7Go Back"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    0;8;36;44:
+      item:
+        id: BLUE_STAINED_GLASS_PANE
+        name: " "
+    1;7;9;17;27;35;37;43:
+      item:
+        id: BLACK_STAINED_GLASS_PANE
+        name: " "
+  category_monsters:
+    slots: 45
+    title: "&4Codex &7» &8Monsters"
+    11:
+      type: "discovery: shadow_warrior"
+    39:
+      item:
+        id: PLAYER_HEAD
+        name: "&7Go Back"
+        skull_data:
+          texture: "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdhZWU5YTc1YmYwZGY3ODk3MTgzMDE1Y2NhMGIyYTdkNzU1YzYzMzg4ZmYwMTc1MmQ1ZjQ0MTlmYzY0NSJ9fX0="
+      open_inventory: main_inventory
+    0;8;36;44:
+      item:
+        id: BLUE_STAINED_GLASS_PANE
+        name: " "
+    1;7;9;17;27;35;37;43:
+      item:
+        id: BLACK_STAINED_GLASS_PANE
+        name: " "
