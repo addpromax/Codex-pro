@@ -1,6 +1,0 @@
----
-icon: terminal
----
-
-# Java API
-
